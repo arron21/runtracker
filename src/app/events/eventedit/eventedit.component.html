@@ -1,0 +1,18 @@
+<div *ngIf="meet && meet.length">
+  <mat-card-title>Edit Meet</mat-card-title>
+  <mat-card-subtitle>{{meet[0].location}}: {{meet[0].date | date:'short'}}</mat-card-subtitle>
+    <div class="event-container">
+        <span *ngFor="let event of meet[0].events" focused="false">
+            {{event.type}}
+        </span>
+    </div>
+
+  <div>
+    <div class="mat-card" *ngFor="let athlete of team" (click)="openDialog(athlete, meet[0])">
+      <span class="athlete-name">{{athlete.firstName}} {{athlete.lastName}}</span>
+    </div>
+  </div>
+
+  <!--<button mat-button>Modify Events</button>-->
+  <!--<button mat-button (click)="addAthleteToEvent()">Add Athlete</button>-->
+</div>

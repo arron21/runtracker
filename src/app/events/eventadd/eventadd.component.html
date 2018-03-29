@@ -1,0 +1,17 @@
+<form [formGroup]="newEventForm">
+  <mat-form-field>
+    <input matInput placeholder="Location" [(ngModel)]="location" formControlName="location">
+  </mat-form-field>
+  <!--<mat-form-field>-->
+    <!--<input matInput placeholder="Date TODAY" disabled [(ngModel)]="date" formControlName="date">-->
+  <!--</mat-form-field>-->
+  <mat-form-field>
+    <input matInput [matDatepicker]="dp3" placeholder="Date" disabled>
+    <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+    <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="events (comma separated)" [(ngModel)]="events" formControlName="events">
+  </mat-form-field>
+  <button mat-raised-button (click)="addNewEvent()">Save</button>
+</form>
