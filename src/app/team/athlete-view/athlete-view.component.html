@@ -1,0 +1,8 @@
+<div>
+  <mat-card-title>{{athlete.firstName}} {{athlete.lastName}}</mat-card-title>
+</div>
+<mat-card-subtitle>Meets</mat-card-subtitle>
+<p *ngIf="!meets || meets.length == 0">No meets!?<br /> go out there and get running!</p>
+<div *ngFor="let meet of meets">
+  <app-meet [meetObj]="meet"></app-meet>
+</div>

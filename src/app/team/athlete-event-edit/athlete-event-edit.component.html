@@ -1,0 +1,20 @@
+<h2>{{data.athlete.firstName}} {{data.athlete.lastName}}</h2>
+<h3>{{data.meet.location}}</h3>
+<!--<div *ngFor="let event of data.meet.events">-->
+  <!--{{event.type}}-->
+<!--</div>-->
+<div *ngIf="athlete">
+<form [formGroup]="athleteForm" novalidate (ngSubmit)="saveForm(athleteForm)">
+
+  <input type="hidden" formControlName="eventId" />
+  <input type="hidden" formControlName="athleteId" />
+  <div formArrayName="events">
+    <div *ngFor="let event of athleteForm.controls.events.controls; let i=index">
+      <mat-form-field [formGroupName]="i">
+        <input matInput [placeholder]="data.meet.events[i].type" formControlName="score">
+      </mat-form-field>
+    </div>
+  </div>
+  <button mat-button type="submit">Save</button>
+</form>
+</div>
