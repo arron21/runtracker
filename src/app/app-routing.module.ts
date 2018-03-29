@@ -1,70 +1,41 @@
 import { NgModule }             from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
-import { PreloadSelectedModulesList } from './core/helpers/preload-selected-modules-list';
-
-import { PageNotFoundComponent } from './core/components/page-not-found.component';
-
-import { AuthGuardService } from './core/services/auth-guard.service';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {TeamComponent} from './team/team.component';
+import {SchoolComponent} from './school/school.component';
+import {EventsComponent} from './events/events.component';
+import {EventeditComponent} from './events/eventedit/eventedit.component';
 
 
 const routes: Routes = [
-
-
     {
         path: 'dashboard',
-        loadChildren: './dashboard/dashboard.module#DashboardModule',
-        canActivate: [AuthGuardService]
+        component: DashboardComponent
     },
-
     {
-        path: 'admin',
-        loadChildren: './admin/admin.module#AdminModule',
-        canActivate: [AuthGuardService],
-        canActivateChild: [AuthGuardService]
+        path: 'team',
+        component: TeamComponent
     },
-
-
     {
-        path: 'project',
-        loadChildren: './project/project.module#ProjectModule',
-        canActivate: [AuthGuardService],
-        canActivateChild: [AuthGuardService],
-        data: {preload: true}
+        path: 'events',
+        component: EventsComponent,
+        children: [{
+            path: ':eventId',
+            component: EventeditComponent,
+        }]
     },
-
     {
-        path: 'settings',
-        loadChildren: './settings/settings.module#SettingsModule',
-        canActivate: [AuthGuardService],
-        canActivateChild: [AuthGuardService],
-        data: {preload: true}
+        path: 'school',
+        component: SchoolComponent
     },
-
-    {
-        path: 'davintest',
-        loadChildren: './davin-test/davin-test.module#DavinTestModule',
-        canActivate: [AuthGuardService],
-        canActivateChild: [AuthGuardService]
-    },
-
-    {
-        path: 'apitest',
-        loadChildren: './api-test/api-test.module#ApiTestModule',
-        canActivate: [AuthGuardService],
-        canActivateChild: [AuthGuardService]
-    },
-
-    { path: '', redirectTo: 'project', pathMatch: 'full' },
-    { path: '**', component: PageNotFoundComponent }
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 ];
 
 @NgModule({
-    providers: [
-        PreloadSelectedModulesList
-    ],
+    providers: [],
     imports: [
         RouterModule.forRoot(routes,
-        {preloadingStrategy: PreloadSelectedModulesList})
+            { preloadingStrategy: PreloadAllModules })
     ],
     exports: [ RouterModule ]
 })

@@ -10,18 +10,39 @@ const httpOptions = {
 };
 
 @Injectable()
-export class TeamService {
+export class MeetService {
     constructor(private http: HttpClient) {}
-    getTeam() {
-        return this.http.get('https://runtracker-7c76c.firebaseio.com/team.json');
+    getMeets() {
+        return this.http.get('https://runtracker-7c76c.firebaseio.com/meets.json');
     }
 
-    addNewAthlete(athlete) {
-        const athleteObj = athlete;
-        console.log(athleteObj);
-        return this.http.post('https://runtracker-7c76c.firebaseio.com/team.json', athleteObj, httpOptions);
+    getMeet(meetId) {
+        const id = meetId.eventId;
+        console.log(meetId);
+        // ?orderBy="username"&equalTo="${nameParam}"
+        return this.http.get(`https://runtracker-7c76c.firebaseio.com/meets.json?orderBy="id"&equalTo=${id}`);
+
     }
 
-
+    addNewMeet(meet) {
+        // const meetObj = athlete;
+        let events = meet.events.split(',');
+        for (let i = 0; i < events.length; i++) {
+            console.log(events[i]);
+            const type = events[i];
+            const newEventObj = {
+                type: type,
+                pr: 0
+            };
+            events[i] = newEventObj;
+        }
+        const meetObj = {
+            id: new Date().getTime(),
+            date: meet.date || new Date(),
+            location: meet.location,
+            events: events
+        };
+        return this.http.post('https://runtracker-7c76c.firebaseio.com/meets.json', meetObj, httpOptions);
+    }
 
 }
