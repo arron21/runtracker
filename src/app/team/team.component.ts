@@ -47,6 +47,7 @@ export class TeamComponent implements OnInit {
               return res[key];
           });
           this.team = result;
+          console.log(this.team);
       });
   }
 
@@ -59,6 +60,8 @@ export class TeamComponent implements OnInit {
       };
 
       this.db.collection('/team').doc((athleteObj.id).toString()).set(athleteObj);
+      this.firstName = '';
+      this.lastName = '';
       //
 
       //   const athleteObj = {

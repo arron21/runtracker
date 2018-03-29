@@ -1,5 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+//@import "~@angular/material/prebuilt-themes/purple-green.css";
+@import "theme";
+
+
 html *:not(.mat-icon) {
   font-family: 'IBM Plex Sans', sans-serif !important;
+}
+
+.mat-card {
+  border-radius: 12px !important;
+}
+
+.component-body {
+  flex: 1;
+  background-color: mat-color($my-app-primary, default-contrast);
+  padding: 1em;
+  overflow-y: auto;
+  &:empty {
+    display: none;
+  }
+}
+.component-footer {
+  padding: 1em;
+  justify-self: flex-end;
+  background-color: mat-color($my-app-neutral);
+
+}
+
+.cdk-global-overlay-wrapper {
+  align-items: unset !important;
 }

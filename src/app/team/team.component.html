@@ -1,8 +1,9 @@
-<app-top-toolbar [titlestring]="'Team'"></app-top-toolbar>
+<app-top-toolbar [titlestring]="'Team'" [color]="'primary'" [data]="team" [dataLabel]="'Total Athletes'"></app-top-toolbar>
+<div class="component-body">
+    <mat-card *ngFor="let athlete of team" (click)="athleteModal(athlete)"><mat-card-title><mat-icon>person</mat-icon> <span>{{athlete.firstName}} {{athlete.lastName}}</span></mat-card-title></mat-card>
+</div>
 
-<mat-card *ngFor="let athlete of team" (click)="athleteModal(athlete)"><mat-card-title><mat-icon>person</mat-icon> <span>{{athlete.firstName}} {{athlete.lastName}}</span></mat-card-title></mat-card>
-
-<mat-card>
+<div class="component-footer">
     <mat-card-title><mat-icon>person_add</mat-icon> Add New Athlete</mat-card-title>
     <form [formGroup]="teamForm">
         <mat-form-field>
@@ -13,4 +14,4 @@
         </mat-form-field>
         <button mat-raised-button (click)="addAthlete()">Save</button>
     </form>
-</mat-card>
+</div>

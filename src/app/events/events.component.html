@@ -1,5 +1,5 @@
-<app-top-toolbar [titlestring]="'Meets'"></app-top-toolbar>
-<div class="meet-list">
+<app-top-toolbar [titlestring]="'Meets'" [color]="'accent'" [data]="meets" [dataLabel]="'Total Meets'"></app-top-toolbar>
+<div class="component-body">
     <div class="meet" *ngFor="let meet of meets">
         <mat-card (click)="editMeetModal(meet)">
             <mat-card-header>
@@ -17,7 +17,7 @@
                 </div>
             </mat-card-content>
             <!--<mat-card-actions>-->
-                <!--<a ><button mat-button>Edit</button></a>-->
+            <!--<a ><button mat-button>Edit</button></a>-->
             <!--</mat-card-actions>-->
         </mat-card>
     </div>

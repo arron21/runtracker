@@ -1,3 +1,9 @@
+:host {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .mat-fab {
   position: fixed;
   bottom: 2em;
@@ -17,12 +23,7 @@
   }
 }
 
-.meet-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  .meet {
-    margin: 1em;
+.meet {
+  margin: 1em;
 
-  }
 }

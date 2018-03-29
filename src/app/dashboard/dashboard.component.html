@@ -1,9 +1,12 @@
-<div style="text-align:center">
-  <a href="events"><button mat-button>Calendar/Event</button></a>
-  <a href="team"><button mat-button>Team</button></a>
-  <a href="school"><button mat-button>School/Coach</button></a>
-
-
-
+<div class="dashboard-container">
+  <a href="events" [style.background]="'primary'">
+    <mat-icon>event</mat-icon>
+    <button mat-button>Meets</button>
+  </a>
+  <a href="team">
+    <mat-icon>supervisor_account</mat-icon>
+    <button mat-button>Team</button>
+  </a>
+  <!--<a href="school"><button mat-button>School/Coach</button></a>-->
   <router-outlet name="main"></router-outlet>
 </div>

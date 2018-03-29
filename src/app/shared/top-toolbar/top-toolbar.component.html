@@ -1,3 +1,8 @@
-<mat-toolbar>
-  <button mat-button (click)="backClicked()">BACK</button><span>{{titlestring}}</span>
+<mat-toolbar [color]="color">
+  <mat-toolbar-row>
+    <button mat-button mat-icon-button (click)="backClicked()"><mat-icon>arrow_back</mat-icon></button><span>{{titlestring}}</span>
+  </mat-toolbar-row>
+  <mat-toolbar-row *ngIf="data" class="sub-toolbar">
+    <span>{{dataLabel}} {{data.length}}</span>
+  </mat-toolbar-row>
 </mat-toolbar>

@@ -8,11 +8,15 @@ import {Location} from '@angular/common';
 })
 export class TopToolbarComponent implements OnInit {
   @Input() titlestring: any;
+  @Input() color: any;
+  @Input() data: any;
+  @Input() dataLabel: string;
   constructor(
       private _location: Location
   ) { }
 
   ngOnInit() {
+    console.log(this.data);
   }
 
   backClicked() {
