@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-    MatButtonModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatDialogModule,
+    MatButtonModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatDialogModule, MatExpansionModule,
     MatGridListModule,
     MatIconModule, MatInputModule,
     MatListModule, MatNativeDateModule,
@@ -33,6 +33,8 @@ import { AthleteViewComponent } from './team/athlete-view/athlete-view.component
 import {TopToolbarComponent} from './shared/top-toolbar/top-toolbar.component';
 import {MeetComponent} from './shared/meet/meet.component';
 import { EventaddComponent } from './events/eventadd/eventadd.component';
+import { EventlistComponent } from './events/eventlist/eventlist.component';
+import { TeamListComponent } from './team/team-list/team-list.component';
 
 
 @NgModule({
@@ -48,7 +50,9 @@ import { EventaddComponent } from './events/eventadd/eventadd.component';
     AthleteViewComponent,
       TopToolbarComponent,
       MeetComponent,
-      EventaddComponent
+      EventaddComponent,
+      EventlistComponent,
+      TeamListComponent
   ],
   entryComponents: [AthleteEventEditComponent, EventaddComponent, AthleteViewComponent],
   imports: [
@@ -72,7 +76,8 @@ import { EventaddComponent } from './events/eventadd/eventadd.component';
       MatTooltipModule,
       MatGridListModule,
       MatDatepickerModule,
-      MatNativeDateModule
+      MatNativeDateModule,
+      MatExpansionModule
     // SharedModule,
 
   ],

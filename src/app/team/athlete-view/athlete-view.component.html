@@ -1,8 +1,13 @@
-<div>
-  <mat-card-title>{{athlete.firstName}} {{athlete.lastName}}</mat-card-title>
+<div class="component-start mat-typography" *ngIf="athlete">
+
+  <app-top-toolbar [titlestring]="'Athlete: ' + athlete.firstName + ' ' + athlete.lastName" [color]="'primary'"></app-top-toolbar>
+
+  <div class="component-body">
+    <h3>Meets</h3>
+    <mat-card *ngFor="let meet of meets">
+      <app-meet [meetObj]="meet"></app-meet>
+    </mat-card>
+    <p *ngIf="!meets || meets.length == 0">No meets!?<br /> go out there and get running!</p>
+  </div>
 </div>
-<mat-card-subtitle>Meets</mat-card-subtitle>
-<p *ngIf="!meets || meets.length == 0">No meets!?<br /> go out there and get running!</p>
-<div *ngFor="let meet of meets">
-  <app-meet [meetObj]="meet"></app-meet>
-</div>
+

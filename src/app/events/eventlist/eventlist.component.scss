@@ -1,0 +1,28 @@
+:host {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-fab {
+  position: fixed;
+  bottom: 2em;
+  left: 2em;
+}
+
+.event-container {
+  margin-bottom: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  span {
+    background-color: #3f51b5;
+    padding: 7px 12px;
+    border-radius: 24px;
+    color: #fff;
+    margin: 0 .5em .5em 0;
+  }
+}
+
+.meet {
+  margin: 1em;
+}

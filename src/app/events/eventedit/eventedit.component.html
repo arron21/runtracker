@@ -1,20 +1,38 @@
-<div *ngIf="meet && meet.length">
-  <mat-card-title>Edit Meet</mat-card-title>
-  <mat-card-subtitle>{{meet[0].location}}: {{meet[0].date | date:'short'}}</mat-card-subtitle>
-    <div class="event-container">
-        <span *ngFor="let event of meet[0].events" focused="false">
-            {{event.type}}
-        </span>
-    </div>
-        <div>
-            <div class="mat-card" *ngFor="let athlete of team" (click)="openDialog(athlete, meet[0])">
-                <span class="athlete-name">{{athlete.firstName}} {{athlete.lastName}}</span>
-            </div>
+<div class="flex-1 component-start" *ngIf="meet && meet.length">
+<app-top-toolbar [titlestring]="'Edit Meet ' + meet[0].location" [color]="'accent'"></app-top-toolbar>
+<div class="component-body mat-typography">
+
+    <h2>Event</h2>
+    <mat-expansion-panel style="margin-bottom: 3em">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <strong>{{meet[0].location}}</strong>: {{meet[0].date | date:'short'}}
+            </mat-panel-title>
+            <mat-panel-description>
+                {{meet[0].events.length}} Event(s)
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-card-subtitle><h3>Events</h3></mat-card-subtitle>
+        <div class="event-container">
+                <span class="primary-pill" *ngFor="let event of meet[0].events" focused="false">
+                    {{event.type}}
+                </span>
         </div>
+    </mat-expansion-panel>
+
+
+    <h2>Athletes</h2>
+    <mat-card class="mat-card" *ngFor="let athlete of team" (click)="openDialog(athlete, meet[0])">
+        <span class="athlete-name">{{athlete.firstName}} {{athlete.lastName}}</span>
+        <div *ngIf="athlete.meets[meet[0].id]">
+            <span *ngFor="let score of athlete.meets[meet[0].id].events" class="primary-pill">{{score.type}}: <span>{{score.score}}</span></span>
+        </div>
+    </mat-card>
 
 
 
 
   <!--<button mat-button>Modify Events</button>-->
   <!--<button mat-button (click)="addAthleteToEvent()">Add Athlete</button>-->
+</div>
 </div>

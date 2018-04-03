@@ -23,35 +23,39 @@ export class EventeditComponent implements OnInit {
       private teamService: TeamService,
       private fb: FormBuilder,
       public dialog: MatDialog,
-      @Inject(MAT_DIALOG_DATA) public data: any,
+      // @Inject(MAT_DIALOG_DATA) public data: any,
       private db: AngularFirestore
   ) { }
 
   ngOnInit() {
 
-      const meetFromModalRef = this.data.meet;
-      console.log(meetFromModalRef)
-      this.meetId = meetFromModalRef.id;
+      // const meetFromModalRef = this.data.meet;
+      // console.log(meetFromModalRef)
+      // this.meetId = meetFromModalRef.id;
 
-      // this.activatedRoute.params.subscribe((params: Params) => {
-      //     const meetId = params;
-      //     this.meetId = meetId;
-      // });
+      this.activatedRoute.params.subscribe((params: Params) => {
+          console.log(params);
+          const meetId = params.eventId;
+          this.meetId = meetId;
+      });
 
       this.getMeet();
       this.getTeam();
   }
 
   getMeet() {
-    let meetId = this.meetId;
   // Angular firestore requires you use the exact typing, the event is saved as an INT, but our json converts it to a string, so annyoying
 
-      this.meet = this.db.collection('/meets', ref => ref.where('id', '==', meetId)).valueChanges()
+      this.meet = this.db.collection('/meets', ref => ref.where('id', '==', Number(this.meetId))).valueChanges()
           .subscribe(res => {
+              console.log('res');
+              console.log(res);
               const result = Object.keys(res).map(function(key) {
                   return res[key];
               });
               this.meet = result;
+              console.log('result');
+              console.log(result);
           });
 
     // this.meetService.getMeet(meetId).subscribe(
@@ -76,6 +80,7 @@ export class EventeditComponent implements OnInit {
                   return res[key];
               });
               this.team = result;
+              console.log(this.team);
           });
 
 

@@ -5,6 +5,9 @@ import {TeamComponent} from './team/team.component';
 import {SchoolComponent} from './school/school.component';
 import {EventsComponent} from './events/events.component';
 import {EventeditComponent} from './events/eventedit/eventedit.component';
+import {EventlistComponent} from './events/eventlist/eventlist.component';
+import {TeamListComponent} from './team/team-list/team-list.component';
+import {AthleteViewComponent} from './team/athlete-view/athlete-view.component';
 
 
 const routes: Routes = [
@@ -14,15 +17,29 @@ const routes: Routes = [
     },
     {
         path: 'team',
-        component: TeamComponent
+        component: TeamComponent,
+            children: [{
+                path: 'list',
+                component: TeamListComponent,
+            },
+            {
+                path: 'view/:athleteId',
+                component: AthleteViewComponent,
+            }
+        ]
     },
     {
         path: 'events',
         component: EventsComponent,
         children: [{
-            path: ':eventId',
+            path: 'list',
+            component: EventlistComponent,
+        },
+        {
+            path: 'view/:eventId',
             component: EventeditComponent,
-        }]
+        }
+        ]
     },
     {
         path: 'school',
