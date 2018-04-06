@@ -1,13 +1,23 @@
 <div class="component-start mat-typography" *ngIf="athlete">
-
   <app-top-toolbar [titlestring]="'Athlete: ' + athlete.firstName + ' ' + athlete.lastName" [color]="'primary'"></app-top-toolbar>
-
   <div class="component-body">
-    <h3>Meets</h3>
-    <mat-card *ngFor="let meet of meets">
-      <app-meet [meetObj]="meet"></app-meet>
-    </mat-card>
-    <p *ngIf="!meets || meets.length == 0">No meets!?<br /> go out there and get running!</p>
+    <mat-tab-group>
+      <mat-tab label="Meets">
+        <p *ngIf="!meets || meets.length == 0">No meets!?<br /> go out there and get running!</p>
+        <mat-card *ngFor="let meet of meets">
+          <app-meet [meetObj]="meet"></app-meet>
+        </mat-card>
+      </mat-tab>
+      <mat-tab label="Events">
+        <h2 class="title">Event Types <button mat-button color="accent" (click)="addEventType()">add an event <mat-icon>add</mat-icon></button></h2>
+        <mat-card *ngFor="let type of eventTypes">
+          <mat-card-title>{{type}} <button mat-button color="accent" (click)="addEventType(type)">add a score  <mat-icon>add</mat-icon></button></mat-card-title>
+          <div *ngFor="let event of athlete.events[type]">{{event.date}} {{event.score}}</div>
+        </mat-card>
+      </mat-tab>
+    </mat-tab-group>
+
+
   </div>
 </div>
 

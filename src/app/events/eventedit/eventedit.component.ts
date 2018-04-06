@@ -80,7 +80,7 @@ export class EventeditComponent implements OnInit {
                   return res[key];
               });
               this.team = result;
-              console.log(this.team);
+              // console.log(this.team);
           });
 
 

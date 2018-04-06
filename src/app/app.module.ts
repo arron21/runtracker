@@ -5,10 +5,11 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
+    MatAutocompleteModule,
     MatButtonModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatDialogModule, MatExpansionModule,
     MatGridListModule,
     MatIconModule, MatInputModule,
-    MatListModule, MatNativeDateModule,
+    MatListModule, MatNativeDateModule, MatTabsModule,
     MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -35,6 +36,7 @@ import {MeetComponent} from './shared/meet/meet.component';
 import { EventaddComponent } from './events/eventadd/eventadd.component';
 import { EventlistComponent } from './events/eventlist/eventlist.component';
 import { TeamListComponent } from './team/team-list/team-list.component';
+import { AthleteSkillAddComponent } from './team/athlete-skill-add/athlete-skill-add.component';
 
 
 @NgModule({
@@ -52,9 +54,10 @@ import { TeamListComponent } from './team/team-list/team-list.component';
       MeetComponent,
       EventaddComponent,
       EventlistComponent,
-      TeamListComponent
+      TeamListComponent,
+      AthleteSkillAddComponent
   ],
-  entryComponents: [AthleteEventEditComponent, EventaddComponent, AthleteViewComponent],
+  entryComponents: [AthleteEventEditComponent, EventaddComponent, AthleteViewComponent, AthleteSkillAddComponent],
   imports: [
     BrowserModule,
       AngularFireModule.initializeApp(environment.firebase, 'runtracker'),
@@ -77,7 +80,9 @@ import { TeamListComponent } from './team/team-list/team-list.component';
       MatGridListModule,
       MatDatepickerModule,
       MatNativeDateModule,
-      MatExpansionModule
+      MatExpansionModule,
+      MatTabsModule,
+      MatAutocompleteModule
     // SharedModule,
 
   ],

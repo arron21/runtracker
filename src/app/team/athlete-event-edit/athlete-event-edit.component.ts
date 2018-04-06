@@ -16,6 +16,7 @@ export class AthleteEventEditComponent implements OnInit {
 
     public athleteForm: FormGroup;
     public athlete: any;
+    public existingEventObj: any;
     items: any[] = [];
 
     constructor(
@@ -57,6 +58,8 @@ export class AthleteEventEditComponent implements OnInit {
                     // return this.athlete.meets[this.data.meet.id];
                 } else {
                 }
+
+                this.existingEventObj = this.athlete.events;
             });
     }
 
@@ -86,15 +89,12 @@ export class AthleteEventEditComponent implements OnInit {
             for (let i = 0; i < control.length; i++) {
                 control.removeAt(i);
             }
-            console.log('existing data')
-            console.log(existingData)
             eventData = existingData.events;
         } else {
             eventData = '';
         }
 
         const _this = this;
-        console.log(this);
         for (let i = 0; i < this.data.meet.events.length; i++) {
             if (!_this.data.meet.events[i]) {
                 break;
@@ -107,18 +107,15 @@ export class AthleteEventEditComponent implements OnInit {
                 break;
             }
 
-            console.log('adding ');
-            console.log(group)
-            console.log('to ');
-            console.log(this.athleteForm.controls['events']);
-
           const control = <FormArray>this.athleteForm.controls['events'];
           control.push(group);
         }
     }
 
     saveForm() {
+      console.log('athlete form');
       console.log(this.athleteForm);
+      console.log(this.data);
 
       const eventId = this.athleteForm.value.eventId;
       const events = this.athleteForm.value.events;
@@ -134,43 +131,54 @@ export class AthleteEventEditComponent implements OnInit {
       };
       const meetObj = {
           meets
-      }
-      // updateObj = {
-      //     meets: {
-      //         meet: {
-      //             eventId: eventId,
-      //             events: events
-      //         }
-      //     }
-      //
-      // };
+      };
       athlete.set(meetObj, { merge: true });
-      this.dialogRef.close();
-        // this._location.back();
 
-
-        // athlete.valueChanges()
-        //     .subscribe(res => {
-        //         const result = Object.keys(res).map(function(key) {
-        //             return res[key];
-        //         });
-        //        console.log(result);
-        //     });
-
-        // athlete.snapshotChanges().map(actions => {
-        //     actions.map(a => {
-        //         const data = a.payload.doc.data();
-        //         data.id = a.payload.doc.id;
-        //         console.log(data);
-        //     });
+        //
+        // const team = this.db.collection('/team');
+        // const athleteRef = team.doc((this.data.athlete.id).toString());
+        // athleteRef.valueChanges().subscribe ( res => {
+        //     console.log(res);
+        //     if (res['events']) {
+        //         this.dataFromDb = res['events'][this.eventType];
+        //     } else {
+        //         console.log('no data');
+        //     }
         // });
 
+      // set all the events to the athlete event obj
+
+        console.log('existing events')
+        console.log(this.existingEventObj)
+        const eventArray = this.athleteForm.value.events;
+        var events = {};
+        for (let i = 0; i < eventArray.length; i++) {
+            var type = eventArray[i].type;
+            type = type.trim();
+            // const type = {
+            //     timestamp: new Date().getTime(),
+            //     date: this.data.meet.date,
+            //     score: eventArray[i].score
+            // };
+            // eventArray[i].type
+            console.log(type);
+            events[type] = this.existingEventObj[type];
+            events[type].push({
+                timestamp: new Date().getTime(),
+                date: this.data.meet.date,
+                score: eventArray[i].score
+            });
+        }
+
+        console.log('eventObjsForDb');
+        console.log(events);
+
+        var events =  {events};
+        this.db.collection('/team').doc((this.data.athlete.id).toString()).set(events, {merge: true});
 
 
-      // const eventData = this.athleteForm.value;
-      //   this.db.collection('/team', ref => ref.where('id', '==', Number(this.athleteForm.value['athleteId'])).set(eventData).then(function() {
-      //       console.log("Document successfully written!");
-      //   });
+
+        this.dialogRef.close();
 
     }
 }

@@ -1,6 +1,6 @@
 <div *ngIf="meet">
-  <p>{{meet.location}}</p>
+  <mat-card-title>{{meet.location}}</mat-card-title>
   <mat-list *ngFor="let event of meetObj.events">
-    <mat-list-item>{{event.type}}: {{event.score}}</mat-list-item>
+    <mat-list-item>{{event.type}}: <span class="primary-pill">{{event.score}}</span></mat-list-item>
   </mat-list>
 </div>
