@@ -12,11 +12,21 @@
                 {{meet[0].events.length}} Event(s)
             </mat-panel-description>
         </mat-expansion-panel-header>
-        <mat-card-subtitle><h3>Events</h3></mat-card-subtitle>
+        <mat-card-subtitle><h3>Events <button mat-button color="accent" (click)="editModeToggle()">{{editText}}</button></h3></mat-card-subtitle>
         <div class="event-container">
-                <span class="primary-pill" *ngFor="let event of meet[0].events" focused="false">
-                    {{event.type}}
-                </span>
+            <span class="primary-pill" *ngFor="let event of meet[0].events" focused="false">
+                {{event.type}} <mat-icon *ngIf="editMode" (click)="deleteEvent(event)">delete</mat-icon>
+            </span>
+        </div>
+
+        <div *ngIf="editMode">
+            <div>
+                <mat-form-field>
+                    <input type="text" placeholder="event" matInput [(ngModel)]="eventToAdd">
+                </mat-form-field>
+                <button mat-button (click)="addEventToMeet()">Add Event</button>
+            </div>
+            <button mat-raised-button color="primary" (click)="saveMeet()">Save</button>
         </div>
     </mat-expansion-panel>
 
@@ -24,7 +34,7 @@
     <h2>Athletes</h2>
     <mat-card class="mat-card" *ngFor="let athlete of team" (click)="openDialog(athlete, meet[0])">
         <span class="athlete-name">{{athlete.firstName}} {{athlete.lastName}}</span>
-        <div *ngIf="athlete.meets[meet[0].id]">
+        <div *ngIf="athlete.meets[meet[0].id]" class="event-container">
             <span *ngFor="let score of athlete.meets[meet[0].id].events" class="primary-pill">{{score.type}}: <span>{{score.score}}</span></span>
         </div>
     </mat-card>

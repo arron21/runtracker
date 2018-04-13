@@ -14,6 +14,7 @@ export class TeamListComponent implements OnInit {
 
     public teamForm: FormGroup;
     public team: any;
+    public loading: Boolean;
 
     public firstName: any;
     public lastName: any;
@@ -34,12 +35,14 @@ export class TeamListComponent implements OnInit {
 
     loadTeam() {
         // let team = [];
+        this.loading = true;
         this.db.collection('/team').valueChanges()
             .subscribe(res => {
                 const result = Object.keys(res).map(function(key) {
                     return res[key];
                 });
                 this.team = result;
+                this.loading = false;
                 // console.log(this.team);
             });
     }
@@ -49,7 +52,8 @@ export class TeamListComponent implements OnInit {
             id: new Date().getTime(),
             firstName: this.firstName,
             lastName: this.lastName,
-            meets: []
+            meets: [],
+            pr: {}
         };
 
         this.db.collection('/team').doc((athleteObj.id).toString()).set(athleteObj);

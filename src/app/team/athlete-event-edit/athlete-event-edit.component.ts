@@ -118,7 +118,7 @@ export class AthleteEventEditComponent implements OnInit {
       console.log(this.data);
 
       const eventId = this.athleteForm.value.eventId;
-      const events = this.athleteForm.value.events;
+      var events = this.athleteForm.value.events;
 
       // const athlete = this.db.collection('/team', ref => ref.where('id', '==', Number(this.athleteForm.value['athleteId'])));
       const team = this.db.collection('/team');
@@ -134,24 +134,12 @@ export class AthleteEventEditComponent implements OnInit {
       };
       athlete.set(meetObj, { merge: true });
 
-        //
-        // const team = this.db.collection('/team');
-        // const athleteRef = team.doc((this.data.athlete.id).toString());
-        // athleteRef.valueChanges().subscribe ( res => {
-        //     console.log(res);
-        //     if (res['events']) {
-        //         this.dataFromDb = res['events'][this.eventType];
-        //     } else {
-        //         console.log('no data');
-        //     }
-        // });
-
       // set all the events to the athlete event obj
 
         console.log('existing events')
         console.log(this.existingEventObj)
         const eventArray = this.athleteForm.value.events;
-        var events = {};
+        events = {};
         for (let i = 0; i < eventArray.length; i++) {
             var type = eventArray[i].type;
             type = type.trim();
@@ -173,7 +161,7 @@ export class AthleteEventEditComponent implements OnInit {
         console.log('eventObjsForDb');
         console.log(events);
 
-        var events =  {events};
+        events =  {events};
         this.db.collection('/team').doc((this.data.athlete.id).toString()).set(events, {merge: true});
 
 

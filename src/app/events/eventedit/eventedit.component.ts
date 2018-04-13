@@ -6,6 +6,8 @@ import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 import {AthleteEventEditComponent} from '../../team/athlete-event-edit/athlete-event-edit.component';
 import {AngularFirestore} from 'angularfire2/firestore';
+import * as _ from 'lodash';
+
 @Component({
   selector: 'app-eventedit',
   templateUrl: './eventedit.component.html',
@@ -15,7 +17,11 @@ export class EventeditComponent implements OnInit {
   public meetId: any;
 
   public meet: any;
+  public originalMeetObj: any;
   public team: any;
+  public eventToAdd: any;
+  public editMode: Boolean = false;
+  public editText: String = 'edit';
 
   constructor(
       private activatedRoute: ActivatedRoute,
@@ -44,9 +50,8 @@ export class EventeditComponent implements OnInit {
   }
 
   getMeet() {
-  // Angular firestore requires you use the exact typing, the event is saved as an INT, but our json converts it to a string, so annyoying
-
-      this.meet = this.db.collection('/meets', ref => ref.where('id', '==', Number(this.meetId))).valueChanges()
+      // Angular firestore requires you use the exact typing, the event is saved as an INT, but our json converts it to a string, so annyoying
+      this.db.collection('/meets', ref => ref.where('id', '==', Number(this.meetId))).valueChanges()
           .subscribe(res => {
               console.log('res');
               console.log(res);
@@ -54,22 +59,18 @@ export class EventeditComponent implements OnInit {
                   return res[key];
               });
               this.meet = result;
+              this.originalMeetObj = _.cloneDeep(this.meet);
               console.log('result');
               console.log(result);
           });
+  }
 
-    // this.meetService.getMeet(meetId).subscribe(
-    //       res => {
-    //
-    //           const result = Object.keys(res).map(function(key) {
-    //               return res[key];
-    //           });
-    //           this.meet = result;
-    //           console.log(this.meet);
-    //       },
-    //       err => {
-    //       }
-    //   );
+  saveMeet() {
+      console.log(this.meet);
+      this.db.collection('/meets').doc((this.meetId).toString()).set(this.meet[0], {merge: true});
+      this.editMode = false;
+
+      // this.db.collection('/meets', ref => ref.where('id', '==', Number(this.meetId))).set(this.meet, { merge: true });
   }
 
   getTeam() {
@@ -82,21 +83,6 @@ export class EventeditComponent implements OnInit {
               this.team = result;
               // console.log(this.team);
           });
-
-
-      // let team = [];
-
-      // this.teamService.getTeam().subscribe(
-      //     res => {
-      //        const result = Object.keys(res).map(function(key) {
-      //             return res[key];
-      //         });
-      //         this.team = result;
-      //
-      //     },
-      //     err => {
-      //     }
-      // );
   }
 
     openDialog(athlete, meet): void {
@@ -126,6 +112,27 @@ export class EventeditComponent implements OnInit {
   //     );
   // }
 
+    editModeToggle() {
+      if (this.editMode === false) {
+          this.editMode = true;
+          this.editText = 'cancel';
+      } else {
+          this.editMode = false;
+          this.editText = 'edit';
+          this.eventToAdd = '';
+          this.meet = _.cloneDeep(this.originalMeetObj);
+      }
+    }
+
+    deleteEvent(event) {
+        const pos = this.meet[0].events.indexOf(event);
+        this.meet[0].events.splice(pos, 1);
+    }
+
+    addEventToMeet() {
+        this.meet[0].events.push({type: this.eventToAdd, pr: ''});
+        this.eventToAdd = '';
+    }
 }
 
 

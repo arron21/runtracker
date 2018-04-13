@@ -1,7 +1,10 @@
-
+a {
+  text-decoration: none;
+}
 .mat-card {
   margin-bottom: 1em;
 }
+mat-card-title {margin-bottom: 0}
 
 :host {
   height: 100vh;

@@ -51,17 +51,20 @@ export class EventaddComponent implements OnInit {
             };
             meetObj.events[i] = newEventObj;
         }
-        this.db.collection('/meets').add(meetObj)
-            .then((docRef) => {
-                console.log("Document written with ID: ", docRef.id);
-                this.location = '';
-                this.events = '';
-                this.dialogRef.close();
+        // this.db.collection('/team').doc((athleteObj.id).toString()).set(athleteObj);
+        this.db.collection('/meets').doc((meetObj.id).toString()).set(meetObj);
 
-            })
-            .catch((error) => {
-                console.error("Error adding document: ", error);
-            });
+        // this.db.collection('/meets').add(meetObj)
+        //     .then((docRef) => {
+        //         console.log("Document written with ID: ", docRef.id);
+        //         this.location = '';
+        //         this.events = '';
+        //         this.dialogRef.close();
+        //
+        //     })
+        //     .catch((error) => {
+        //         console.error("Error adding document: ", error);
+        //     });
 
         // console.log(this.newEventForm);
         // this.meetService.addNewMeet(this.newEventForm.value).subscribe(

@@ -9,7 +9,7 @@ import {
     MatButtonModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatDialogModule, MatExpansionModule,
     MatGridListModule,
     MatIconModule, MatInputModule,
-    MatListModule, MatNativeDateModule, MatTabsModule,
+    MatListModule, MatNativeDateModule, MatSortModule, MatTableModule, MatTabsModule,
     MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -82,7 +82,9 @@ import { AthleteSkillAddComponent } from './team/athlete-skill-add/athlete-skill
       MatNativeDateModule,
       MatExpansionModule,
       MatTabsModule,
-      MatAutocompleteModule
+      MatAutocompleteModule,
+      MatTableModule,
+      MatSortModule
     // SharedModule,
 
   ],
