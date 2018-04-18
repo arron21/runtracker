@@ -9,7 +9,7 @@ import {
     MatButtonModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatDialogModule, MatExpansionModule,
     MatGridListModule,
     MatIconModule, MatInputModule,
-    MatListModule, MatNativeDateModule, MatSortModule, MatTableModule, MatTabsModule,
+    MatListModule, MatMenuModule, MatNativeDateModule, MatSnackBarModule, MatSortModule, MatTableModule, MatTabsModule,
     MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -37,6 +37,7 @@ import { EventaddComponent } from './events/eventadd/eventadd.component';
 import { EventlistComponent } from './events/eventlist/eventlist.component';
 import { TeamListComponent } from './team/team-list/team-list.component';
 import { AthleteSkillAddComponent } from './team/athlete-skill-add/athlete-skill-add.component';
+import {TopScorePipe} from './shared/pipes/topScore';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { AthleteSkillAddComponent } from './team/athlete-skill-add/athlete-skill
       EventaddComponent,
       EventlistComponent,
       TeamListComponent,
-      AthleteSkillAddComponent
+      AthleteSkillAddComponent,
+      TopScorePipe
   ],
   entryComponents: [AthleteEventEditComponent, EventaddComponent, AthleteViewComponent, AthleteSkillAddComponent],
   imports: [
@@ -84,7 +86,9 @@ import { AthleteSkillAddComponent } from './team/athlete-skill-add/athlete-skill
       MatTabsModule,
       MatAutocompleteModule,
       MatTableModule,
-      MatSortModule
+      MatSortModule,
+      MatMenuModule,
+      MatSnackBarModule
     // SharedModule,
 
   ],

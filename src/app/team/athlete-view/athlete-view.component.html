@@ -15,7 +15,7 @@
           <!--<div *ngFor="let event of athlete.events[type]">{{event.date}} {{event.score}}</div>-->
         <!--</mat-card>-->
           <mat-card *ngFor="let type of eventTypes; let i = index">
-          <mat-card-title>{{type}} <span class="primary-pill d-inline-block">PR: </span> <button mat-button color="accent" (click)="addEventType(type)">add a score  <mat-icon>add</mat-icon></button></mat-card-title>
+          <mat-card-title>{{type}} <span class="primary-pill d-inline-block">PR: {{dataSource[i].data | topScore}}</span> <button mat-button color="accent" (click)="addEventType(type)">add a score  <mat-icon>add</mat-icon></button></mat-card-title>
             <!--<div *ngFor="let event of eventTypes[]">{{event.date | date:'short'}} {{event.score}}</div>-->
             <mat-table #table [dataSource]="dataSource[i]" matSort (matSortChange)="sortTableData($event, table)">
               <ng-container matColumnDef="date">

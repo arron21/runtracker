@@ -52,6 +52,12 @@ export class AthleteViewComponent implements OnInit, AfterViewInit {
               this.athlete = result[0];
               this.eventList = this.athlete.events
 
+
+              this.afterAthleteLoad();
+
+              if (!this.eventList) {
+                  return false;
+              }
               this.eventValues = Object.values(this.eventList);
               for (let i = 0; i < this.eventValues.length; i++) {
                   this.dataSource[i] = new MatTableDataSource(this.eventValues[i]);
@@ -65,7 +71,6 @@ export class AthleteViewComponent implements OnInit, AfterViewInit {
               }
               this.meets = meets;
 
-              this.afterAthleteLoad();
           });
   }
 
@@ -110,39 +115,5 @@ export class AthleteViewComponent implements OnInit, AfterViewInit {
     }
 
     getPr(type?) {
-        _.each(this.eventList, (e) => {
-            console.log(e);
-            let compareArray = _.map(e, (i) => {
-                return i.score;
-            });
-
-            console.log(compareArray);
-
-            let pr = _.reduce(compareArray, function(a, b){ return a > b ? a : b; });  // return 'ac'
-            console.log(pr);
-
-            console.log(this.eventList);
-
-            console.log(this.eventList);
-            for (let key in this.eventList) {
-                console.log(key);
-
-                // TODO: finish the funciton to uppdate the athletes PR
-                this.athlete.pr[key] = pr;
-
-
-            }
-
-            // this.athlete = this.db.doc('/team', 'id', '==', Number(this.athleteId))
-            console.log(this.athlete);
-            // this.db.collection('/team').doc(this.athleteId).set(athleteObj);
-
-            // for (let [key, value] of Object.entries(this.eventList)) {
-            //     console.log(key);
-            //     console.log(value);
-            // }
-
-            console.log('END OF EACH LOOPS-----')
-        });
     }
 }

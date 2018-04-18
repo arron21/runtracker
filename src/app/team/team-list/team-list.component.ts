@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {TeamService} from '../../core/services/team.service';
 import {AngularFirestore} from 'angularfire2/firestore';
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {AthleteViewComponent} from '../athlete-view/athlete-view.component';
 
@@ -19,9 +19,12 @@ export class TeamListComponent implements OnInit {
     public firstName: any;
     public lastName: any;
 
+    @ViewChild('firstNameInput') firstNameInput: ElementRef;
+
     constructor(private fb: FormBuilder,
               private teamService: TeamService,
               private db: AngularFirestore,
+              public snackBar: MatSnackBar,
               public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -59,6 +62,7 @@ export class TeamListComponent implements OnInit {
         this.db.collection('/team').doc((athleteObj.id).toString()).set(athleteObj);
         this.firstName = '';
         this.lastName = '';
+        this.firstNameInput.nativeElement.focus();
         //
 
         //   const athleteObj = {
@@ -101,6 +105,22 @@ export class TeamListComponent implements OnInit {
         //     console.log('The dialog was closed');
         //     // this.animal = result;
         // });
+    }
+
+    deleteAthlete(athlete) {
+        console.log(athlete);
+        const docId = athlete.id.toString();
+        this.db.collection("team").doc(docId).delete().then(() => {
+            console.log("Document successfully deleted!");
+            this.snackBar.open(`${athlete.firstName} ${athlete.lastName} Deleted`, '', {
+                duration: 1200,
+            });
+
+        }).catch(function(error) {
+            console.error("Error removing document: ", error);
+        });
+
+
     }
 
 }

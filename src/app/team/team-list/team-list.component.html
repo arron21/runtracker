@@ -2,18 +2,29 @@
 <div class="component-body">
   <!--<mat-card *ngFor="let athlete of team" (click)="athleteModal(athlete)"><mat-card-title><mat-icon>person</mat-icon> <span>{{athlete.firstName}} {{athlete.lastName}}</span></mat-card-title></mat-card>-->
   <div *ngIf="loading">loading</div>
-  <a [routerLink]="'../view/'+athlete.id" *ngFor="let athlete of team">
+  <div *ngFor="let athlete of team">
     <mat-card>
-      <mat-card-title><span>{{athlete.firstName}} {{athlete.lastName}}</span></mat-card-title>
+      <mat-card-title>
+        <a [routerLink]="'../view/'+athlete.id">{{athlete.firstName}} {{athlete.lastName}}</a>
+        <mat-menu #appMenu="matMenu">
+          <button mat-menu-item><mat-icon>mode_edit</mat-icon> Edit</button>
+          <button mat-menu-item (click)="deleteAthlete(athlete)"><mat-icon>delete</mat-icon> Delete</button>
+        </mat-menu>
+
+        <span class="flex-1"></span>
+        <button mat-icon-button [matMenuTriggerFor]="appMenu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </mat-card-title>
     </mat-card>
-  </a>
+  </div>
 </div>
 
 <div class="component-footer">
-  <mat-card-title><mat-icon>person_add</mat-icon> Add New Athlete</mat-card-title>
+  <mat-card-title><mat-icon>person_add</mat-icon>Add New Athlete</mat-card-title>
   <form [formGroup]="teamForm">
     <mat-form-field>
-      <input matInput placeholder="First Name" [(ngModel)]="firstName" formControlName="firstName">
+      <input #firstNameInput matInput placeholder="First Name" [(ngModel)]="firstName" formControlName="firstName">
     </mat-form-field>
     <mat-form-field>
       <input matInput placeholder="Last Name" [(ngModel)]="lastName" formControlName="lastName">

@@ -1,3 +1,8 @@
+// Import theming functions
+@import '~@angular/material/theming';
+// Import your custom theme
+@import 'src/theme.scss';
+
 a {
   text-decoration: none;
 }
@@ -5,9 +10,25 @@ a {
   margin-bottom: 1em;
 }
 mat-card-title {margin-bottom: 0}
+mat-card-title {
+  display: flex;
+  align-items: center;
+}
 
 :host {
   height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+
+.component-footer {
+  @extend .mat-card;
+  //background-color: mat-color($my-app-primary);
+  mat-card-title {
+    margin-bottom: 1em;
+    mat-icon {
+      margin-right: 1em;
+    }
+  }
 }
