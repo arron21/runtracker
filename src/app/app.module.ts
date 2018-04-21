@@ -41,6 +41,7 @@ import {TopScorePipe} from './shared/pipes/topScore';
 import { AthleteEditComponent } from './team/athlete-edit/athlete-edit.component';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import {MomentModule} from 'ngx-moment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +65,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
   entryComponents: [AthleteEventEditComponent, EventaddComponent, AthleteViewComponent, AthleteSkillAddComponent],
   imports: [
       NgxDatatableModule,
-
+      MomentModule,
     BrowserModule,
       AngularFireModule.initializeApp(environment.firebase, 'runtracker'),
       AngularFirestoreModule,

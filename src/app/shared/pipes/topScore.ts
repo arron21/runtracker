@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import * as _ from 'lodash';
-
+import * as moment from 'moment';
 @Pipe({name: 'topScore'})
 export class TopScorePipe implements PipeTransform {
     transform(value: any, arg1: any, arg2: any): any {
 
-        console.log('top score')
-        console.log(value)
+        // console.log('top score')
+        // console.log(value)
 
         let pr;
         _.each(value, (e) => {
@@ -14,16 +14,31 @@ export class TopScorePipe implements PipeTransform {
             const compareArray = _.map(value, (i) => {
                 return i.score;
             });
-            console.log('checking type of value is NUMB')
-            console.log(compareArray[0]);
-            console.log(this.isNumber(compareArray[0]));
 
             if (!this.isNumber(compareArray[0])) {
-                return ''
+                // return ''
             }
             // check if value is a timestamp
             if (!this.isNumber(compareArray[0])) {
-                return ''
+
+                console.log('we think its a timestamp');
+                console.log(compareArray[0]);
+                if (compareArray[0].indexOf(':') > -1) {
+                    console.log('this is a time.');
+                    const timeArray = compareArray[0].split(/:|\./);
+                    console.log(timeArray);
+                    console.log(timeArray.length);
+                    const minuteMilliseconds = timeArray[0] * 60 * 1000;
+                    const secondMilliseconds = timeArray[1] * 1000;
+                    const milliseconds = timeArray[2];
+                    console.log(minuteMilliseconds, secondMilliseconds, milliseconds);
+                    const totalMilliseconds = Number(minuteMilliseconds) + Number(secondMilliseconds) + Number(milliseconds);
+                    console.log(totalMilliseconds);
+
+                    // return totalMilliseconds;
+                    pr = totalMilliseconds;
+                }
+                // return ''
             }
             pr = _.reduce(compareArray, function(a, b){ return a > b ? a : b; });  // return 'ac'
 
@@ -49,7 +64,8 @@ export class TopScorePipe implements PipeTransform {
             // return pr;
 
         });
-        console.log('THE PR IS');
+        // console.log('THE PR IS');
+        // console.log(pr);
         console.log(pr);
         return pr;
 
@@ -57,7 +73,7 @@ export class TopScorePipe implements PipeTransform {
     }
 
     isNumber(n) {
-        console.log(Date.parse(n));
+        // console.log(Date.parse(n));
         return !isNaN(parseFloat(n)) && isFinite(n);
     }
 }
