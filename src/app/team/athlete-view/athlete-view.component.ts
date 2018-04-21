@@ -19,6 +19,8 @@ export class AthleteViewComponent implements OnInit, AfterViewInit {
   public eventList: Array<any> = [];
   public eventValues: Array<any> = [];
 
+  columns: any;
+
   public dataSource: Array<any> = [];
   displayedColumns = ['date', 'score'];
   @ViewChild(MatSort) sort: MatSort;
@@ -62,8 +64,9 @@ export class AthleteViewComponent implements OnInit, AfterViewInit {
               for (let i = 0; i < this.eventValues.length; i++) {
                   this.dataSource[i] = new MatTableDataSource(this.eventValues[i]);
                   // this.dataSource[i].sort = {active: "score", direction: "desc"};
-                  this.dataSource[i].sortData('score', 'desc');
+                  // this.dataSource[i].sortData('score', 'desc');
               }
+
 
               const meets = [];
               for (const i in result[0].meets) {
@@ -72,6 +75,12 @@ export class AthleteViewComponent implements OnInit, AfterViewInit {
               this.meets = meets;
 
           });
+
+
+      this.columns = [
+          { prop: 'date' },
+          { prop: 'score' },
+      ];
   }
 
   afterAthleteLoad() {
