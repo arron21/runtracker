@@ -30,6 +30,14 @@ html *:not(.mat-icon) {
   justify-self: flex-end;
   background-color: mat-color($my-app-neutral);
 
+  display: flex;
+  button {
+    flex: 1;
+    &+button {
+      margin-left: 16px;
+    }
+  }
+
 }
 
 //.cdk-global-overlay-wrapper {

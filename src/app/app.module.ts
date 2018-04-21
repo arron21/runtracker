@@ -38,6 +38,7 @@ import { EventlistComponent } from './events/eventlist/eventlist.component';
 import { TeamListComponent } from './team/team-list/team-list.component';
 import { AthleteSkillAddComponent } from './team/athlete-skill-add/athlete-skill-add.component';
 import {TopScorePipe} from './shared/pipes/topScore';
+import { AthleteEditComponent } from './team/athlete-edit/athlete-edit.component';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import {TopScorePipe} from './shared/pipes/topScore';
       EventlistComponent,
       TeamListComponent,
       AthleteSkillAddComponent,
-      TopScorePipe
+      TopScorePipe,
+      AthleteEditComponent
   ],
   entryComponents: [AthleteEventEditComponent, EventaddComponent, AthleteViewComponent, AthleteSkillAddComponent],
   imports: [

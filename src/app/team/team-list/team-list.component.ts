@@ -107,6 +107,22 @@ export class TeamListComponent implements OnInit {
         // });
     }
 
+    editAthlete(athlete) {
+        console.log(athlete);
+        const docId = athlete.id.toString();
+        // this.db.collection("team").doc(docId).delete().then(() => {
+        //     console.log("Document successfully deleted!");
+        //     this.snackBar.open(`${athlete.firstName} ${athlete.lastName} Deleted`, '', {
+        //         duration: 1200,
+        //     });
+        //
+        // }).catch(function(error) {
+        //     console.error("Error removing document: ", error);
+        // });
+
+
+    }
+
     deleteAthlete(athlete) {
         console.log(athlete);
         const docId = athlete.id.toString();

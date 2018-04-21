@@ -36,3 +36,23 @@
   left: 30px;
   font-size: 30vmin;
 }
+
+.dashboard-container-phone-style {
+  display: flex;
+  justify-content: space-between;
+  a {
+    background: white;
+    border-radius: 20px;
+    height: 18vmin;
+    width: 18vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    mat-icon {
+      height: 100%;
+      width: 100%;
+      flex: 1;
+    }
+
+  }
+}
