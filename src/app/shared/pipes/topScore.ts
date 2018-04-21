@@ -21,6 +21,10 @@ export class TopScorePipe implements PipeTransform {
             if (!this.isNumber(compareArray[0])) {
                 return ''
             }
+            // check if value is a timestamp
+            if (!this.isNumber(compareArray[0])) {
+                return ''
+            }
             pr = _.reduce(compareArray, function(a, b){ return a > b ? a : b; });  // return 'ac'
 
 

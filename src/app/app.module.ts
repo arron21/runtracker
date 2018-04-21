@@ -64,6 +64,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
   entryComponents: [AthleteEventEditComponent, EventaddComponent, AthleteViewComponent, AthleteSkillAddComponent],
   imports: [
       NgxDatatableModule,
+
     BrowserModule,
       AngularFireModule.initializeApp(environment.firebase, 'runtracker'),
       AngularFirestoreModule,
