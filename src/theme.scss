@@ -1,4 +1,5 @@
 @import '~@angular/material/theming';
+@import '~normalize.css/normalize.css';
 @include mat-core();
 $my-app-primary: mat-palette($mat-green);
 $my-app-accent: mat-palette($mat-deep-orange, A200, A100, A400);
