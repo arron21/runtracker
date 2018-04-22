@@ -1,9 +1,12 @@
 <div class="component-start" *ngIf="athlete">
   <app-top-toolbar [titlestring]="'Athlete: ' + athlete.firstName + ' ' + athlete.lastName" [color]="'primary'"></app-top-toolbar>
-  <div class="component-body">
+  <div class="component-body mat-typography">
     <mat-tab-group>
       <mat-tab label="Meets">
-        <p *ngIf="!meets || meets.length == 0">No meets!?<br /> go out there and get running!</p>
+        <div class="empty-state" *ngIf="!meets || meets.length == 0">
+          <h2>No meets!?</h2>
+          <h3>Go out there and get running!</h3>
+        </div>
         <mat-card *ngFor="let meet of meets">
           <app-meet [meetObj]="meet"></app-meet>
         </mat-card>

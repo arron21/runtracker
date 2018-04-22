@@ -32,8 +32,18 @@
 
 
     <h2>Athletes</h2>
-    <mat-card class="mat-card" *ngFor="let athlete of team" (click)="openDialog(athlete, meet[0])">
-        <span class="athlete-name">{{athlete.firstName}} {{athlete.lastName}}</span>
+    <mat-card class="mat-card" *ngFor="let athlete of team">
+        <mat-card-title>
+            <span class="athlete-name" (click)="openDialog(athlete, meet[0])">{{athlete.firstName}} {{athlete.lastName}}</span>
+            <mat-menu #appMenu="matMenu">
+                <button mat-menu-item (click)="goToAthlete(athlete)"><mat-icon>person</mat-icon> View Athlete</button>
+            </mat-menu>
+
+            <span class="flex-1"></span>
+            <button mat-icon-button [matMenuTriggerFor]="appMenu">
+                <mat-icon>more_vert</mat-icon>
+            </button></mat-card-title>
+
         <div *ngIf="athlete.meets[meet[0].id]" class="event-container">
             <span *ngFor="let score of athlete.meets[meet[0].id].events" class="primary-pill">{{score.type}}: <span>{{score.score}}</span></span>
         </div>

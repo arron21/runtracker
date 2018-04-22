@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {MeetService} from '../../core/services/meet.service';
 import {TeamService} from '../../core/services/team.service';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
@@ -24,6 +24,7 @@ export class EventeditComponent implements OnInit {
   public editText: String = 'edit';
 
   constructor(
+      private router: Router,
       private activatedRoute: ActivatedRoute,
       private meetService: MeetService,
       private teamService: TeamService,
@@ -132,6 +133,13 @@ export class EventeditComponent implements OnInit {
     addEventToMeet() {
         this.meet[0].events.push({type: this.eventToAdd, pr: ''});
         this.eventToAdd = '';
+    }
+
+    goToAthlete(athlete) {
+      //  [routerLink]="'../../../view/'+athlete.id"
+        const id = athlete.id;
+        console.log(athlete)
+        this.router.navigate([`team/view/${id}`]);
     }
 }
 

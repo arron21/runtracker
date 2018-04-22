@@ -42,6 +42,8 @@ import { AthleteEditComponent } from './team/athlete-edit/athlete-edit.component
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import {MomentModule} from 'ngx-moment';
+import { ServiceWorkerModule } from '@angular/service-worker';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -93,7 +95,8 @@ import {MomentModule} from 'ngx-moment';
       MatTableModule,
       MatSortModule,
       MatMenuModule,
-      MatSnackBarModule
+      MatSnackBarModule,
+      environment.production ? ServiceWorkerModule.register('ngsw-worker.js') : []
     // SharedModule,
 
   ],

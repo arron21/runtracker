@@ -5,13 +5,121 @@
   <title>Runtracker</title>
   <base href="/">
 
+  <meta name="theme-color" content="#673ab7">
+  <link rel="manifest" href="manifest.json">
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <style>
+    .container {
+      height: 50vmin;
+      width: 50vmin;
+      min-width: 125px;
+      min-height: 125px;
+      -webkit-animation: spin 7s ease-in-out infinite;
+      animation: spin 7s ease-in-out infinite;
+    }
+
+    .circle {
+      mix-blend-mode: screen;
+      background: #fff;
+      height: 50vmin;
+      width: 50vmin;
+      min-width: 125px;
+      min-height: 125px;
+      border-radius: 50%;
+      position: absolute;
+      opacity: 0.75;
+      -webkit-transform: translate(0, 0);
+      transform: translate(0, 0);
+      -webkit-animation: breath 7s ease-in-out infinite;
+      animation: breath 7s ease-in-out infinite;
+    }
+    .circle:nth-child(1) {
+      -webkit-transform: translate(-35px, -50px);
+      transform: translate(-35px, -50px);
+      background: #1abc9c;
+    }
+    .circle:nth-child(2) {
+      -webkit-transform: translate(35px, -50px);
+      transform: translate(35px, -50px);
+      background: #2ecc71;
+    }
+    .circle:nth-child(3) {
+      -webkit-transform: translate(-60px, 0);
+      transform: translate(-60px, 0);
+      background: #3498db;
+    }
+    .circle:nth-child(4) {
+      -webkit-transform: translate(60px, 0);
+      transform: translate(60px, 0);
+      background: #9b59b6;
+    }
+    .circle:nth-child(5) {
+      -webkit-transform: translate(-35px, 50px);
+      transform: translate(-35px, 50px);
+      background: #f1c40f;
+    }
+    .circle:nth-child(6) {
+      -webkit-transform: translate(35px, 50px);
+      transform: translate(35px, 50px);
+      background: #e67e22;
+    }
+
+    @-webkit-keyframes spin {
+      50% {
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spin {
+      50% {
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+    @-webkit-keyframes breath {
+      50% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+      }
+    }
+    @keyframes breath {
+      50% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+      }
+    }
+
+  </style>
 </head>
 <body>
-  <app-root></app-root>
+  <app-root>
+    <div class="container">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+    </div>
+  </app-root>
+  <noscript>
+    <h3 style="color: #673ab7; font-family: Helvetica; margin: 2rem;">
+      Sorry, but app is not available without javascript
+    </h3>
+  </noscript>
 </body>
 </html>

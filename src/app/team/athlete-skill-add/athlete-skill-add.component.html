@@ -1,0 +1,31 @@
+<form [formGroup]="athleteSkillForm">
+
+  <div>
+    <mat-form-field>
+      <input type="text" placeholder="event" matInput formControlName="event" [(ngModel)]="eventType" (ngModelChange)="getAthleteEvents()" [matAutocomplete]="auto">
+    </mat-form-field>
+
+
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of options" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-autocomplete>
+
+
+    <mat-form-field>
+      <input type="text" placeholder="score" #scoreInput matInput formControlName="score">
+    </mat-form-field>
+  </div>
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="dp3" formControlName="date" placeholder="Date (optional)" disabled>
+    <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+    <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+  </mat-form-field>
+
+  <div>
+    <button mat-raised-button (click)="saveForm()">Save</button>
+  </div>
+
+</form>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {EventeditComponent} from '../eventedit/eventedit.component';
 import {EventaddComponent} from '../eventadd/eventadd.component';
 import {AngularFirestore} from 'angularfire2/firestore';
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder} from '@angular/forms';
 import {MeetService} from '../../core/services/meet.service';
@@ -22,6 +22,7 @@ export class EventlistComponent implements OnInit {
       private route: ActivatedRoute,
       private router: Router,
       private db: AngularFirestore,
+      public snackBar: MatSnackBar,
       public dialog: MatDialog,
   ) { }
 
@@ -76,5 +77,18 @@ export class EventlistComponent implements OnInit {
         });
     }
 
+    deleteMeet(meet) {
+        const docId = meet.id.toString();
+        this.db.collection("meets").doc(docId).delete().then(() => {
+            console.log("Document successfully deleted!");
+            this.snackBar.open(`${meet.location} meet Deleted`, '', {
+                duration: 2500,
+            });
+
+        }).catch(function(error) {
+            console.error("Error removing document: ", error);
+        });
+
+    }
 
 }

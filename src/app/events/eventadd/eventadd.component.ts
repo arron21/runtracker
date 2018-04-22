@@ -53,6 +53,7 @@ export class EventaddComponent implements OnInit {
         }
         // this.db.collection('/team').doc((athleteObj.id).toString()).set(athleteObj);
         this.db.collection('/meets').doc((meetObj.id).toString()).set(meetObj);
+        this.dialogRef.close();
 
         // this.db.collection('/meets').add(meetObj)
         //     .then((docRef) => {

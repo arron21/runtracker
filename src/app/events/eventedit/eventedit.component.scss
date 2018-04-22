@@ -4,10 +4,9 @@
   flex-direction: column;
 }
 
-.athlete-name {
-  width: 6em;
-  display: inline-block;
-  overflow: hidden;
+mat-card-title {
+  display: flex;
+  align-items: center;
 }
 
 .mat-card {
