@@ -135,8 +135,10 @@ export class TeamListComponent implements OnInit {
         }).catch(function(error) {
             console.error("Error removing document: ", error);
         });
+    }
 
-
+    onAthleteAddModal() {
+        console.log('test');
     }
 
 }
