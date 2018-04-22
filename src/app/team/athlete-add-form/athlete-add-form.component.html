@@ -1,0 +1,7 @@
+<mat-form-field>
+  <input #firstNameInput matInput placeholder="First Name" [(ngModel)]="firstName">
+</mat-form-field>
+<mat-form-field>
+  <input matInput placeholder="Last Name" [(ngModel)]="lastName">
+</mat-form-field>
+<button mat-raised-button [disabled]="firstName.length === 0" (click)="addAthlete()">Save</button>
