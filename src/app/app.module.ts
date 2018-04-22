@@ -43,6 +43,7 @@ import { AthleteEditComponent } from './team/athlete-edit/athlete-edit.component
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import {MomentModule} from 'ngx-moment';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { AthleteAddFormComponent } from './team/athlete-add-form/athlete-add-form.component';
 
 @NgModule({
   declarations: [
@@ -62,9 +63,10 @@ import { ServiceWorkerModule } from '@angular/service-worker';
       TeamListComponent,
       AthleteSkillAddComponent,
       TopScorePipe,
-      AthleteEditComponent
+      AthleteEditComponent,
+      AthleteAddFormComponent
   ],
-  entryComponents: [AthleteEventEditComponent, EventaddComponent, AthleteViewComponent, AthleteSkillAddComponent],
+  entryComponents: [AthleteEventEditComponent, EventaddComponent, AthleteAddFormComponent, AthleteViewComponent, AthleteSkillAddComponent],
   imports: [
       NgxDatatableModule,
       MomentModule,

@@ -18,18 +18,5 @@
       </mat-card-title>
     </mat-card>
   </div>
-</div>
-<button mat-fab matTooltip="Add Event" (click)="onAthleteAddModal()"><mat-icon>add</mat-icon></button>
-
-<div class="component-footer">
-  <mat-card-title><mat-icon>person_add</mat-icon>Add New Athlete</mat-card-title>
-  <form [formGroup]="teamForm">
-    <mat-form-field>
-      <input #firstNameInput matInput placeholder="First Name" [(ngModel)]="firstName" formControlName="firstName">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Last Name" [(ngModel)]="lastName" formControlName="lastName">
-    </mat-form-field>
-    <button mat-raised-button (click)="addAthlete()">Save</button>
-  </form>
+  <button mat-fab [color]="'primary'" matTooltip="Add Athlete" (click)="onAthleteAddModal()"><mat-icon>add</mat-icon></button>
 </div>
