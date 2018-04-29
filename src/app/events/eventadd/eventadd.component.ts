@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MeetService} from '../../core/services/meet.service';
@@ -21,13 +21,13 @@ export class EventaddComponent implements OnInit {
       private route: ActivatedRoute,
       private router: Router,
       private db: AngularFirestore,
-      private dialogRef: MatDialogRef<EventaddComponent>,
+      // private dialogRef: MatDialogRef<EventaddComponent>,
 
   ) { }
 
   ngOnInit() {
       this.newEventForm = this.fb.group({
-          location: '',
+          location: new FormControl('', Validators.required) ,
           date: new Date(),
           events: ''
       });
@@ -53,7 +53,7 @@ export class EventaddComponent implements OnInit {
         }
         // this.db.collection('/team').doc((athleteObj.id).toString()).set(athleteObj);
         this.db.collection('/meets').doc((meetObj.id).toString()).set(meetObj);
-        this.dialogRef.close();
+        // this.dialogRef.close();
 
         // this.db.collection('/meets').add(meetObj)
         //     .then((docRef) => {

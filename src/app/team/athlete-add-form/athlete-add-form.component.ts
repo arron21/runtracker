@@ -34,13 +34,16 @@ export class AthleteAddFormComponent implements OnInit {
           pr: {}
       };
 
-      this.db.collection('/team').doc((athleteObj.id).toString()).set(athleteObj).then(() => {
-          this.snackBar.open(`${this.firstName} ${this.lastName} Added`, '', {
-              duration: 1200,
+      this.db.collection('/team').doc((athleteObj.id).toString()).set(athleteObj)
+          .then(() => {
+              this.snackBar.open(`${this.firstName} ${this.lastName} Added`, '', {
+                  duration: 1200,
+              });
+              this.dialogRef.close();
+          }, () => {
           });
-          this.dialogRef.close();
-      }, () => {
-      });
+
+      // this.db.collection('/team').doc((athleteObj.id).toString()).collection('meets').set(athleteObj)
       // this.firstName = '';
       // this.lastName = '';
       // this.firstNameInput.nativeElement.focus();

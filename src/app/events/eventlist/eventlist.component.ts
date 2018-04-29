@@ -76,6 +76,9 @@ export class EventlistComponent implements OnInit {
             // this.animal = result;
         });
     }
+    onEventAdd() {
+        this.router.navigate(['../event-add'], {relativeTo: this.route});
+    }
 
     deleteMeet(meet) {
         const docId = meet.id.toString();

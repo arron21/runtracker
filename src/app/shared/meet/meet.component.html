@@ -1,6 +1,17 @@
 <div *ngIf="meet">
-  <mat-card-title>{{meet.location}}</mat-card-title>
+  <mat-card-title>
+    <span>{{meet.location}}</span>
+    <span class="flex-1"></span>
+    <button mat-icon-button [matMenuTriggerFor]="appMenu">
+      <mat-icon>more_vert</mat-icon>
+    </button></mat-card-title>
   <mat-list *ngFor="let event of meetObj.events">
     <mat-list-item>{{event.type}}: <span class="primary-pill">{{event.score}}</span></mat-list-item>
   </mat-list>
+
+  <mat-menu #appMenu="matMenu">
+    <button mat-menu-item (click)="onDeleteMeet(meet);"><mat-icon>delete</mat-icon> Delete</button>
+  </mat-menu>
+
+
 </div>

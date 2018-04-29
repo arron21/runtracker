@@ -125,4 +125,20 @@ export class AthleteViewComponent implements OnInit, AfterViewInit {
 
     getPr(type?) {
     }
+
+
+    deleteMeetFromAthlete(a) {
+        console.log(a)
+        console.log(a.meet.id);
+        // const docId = athlete.id.toString();
+        // this.db.collection("team").doc(docId).delete().then(() => {
+        //     console.log("Document successfully deleted!");
+        //     this.snackBar.open(`${athlete.firstName} ${athlete.lastName} Deleted`, '', {
+        //         duration: 1200,
+        //     });
+        //
+        // }).catch(function(error) {
+        //     console.error("Error removing document: ", error);
+        // });
+    }
 }

@@ -1,3 +1,6 @@
+<app-top-toolbar [titlestring]="'New Meet'" [color]="'accent'"></app-top-toolbar>
+<div class="component-body">
+
 <form [formGroup]="newEventForm">
   <mat-form-field>
     <input matInput placeholder="Location" [(ngModel)]="location" formControlName="location">
@@ -13,5 +16,7 @@
   <mat-form-field>
     <input matInput placeholder="events (comma separated)" [(ngModel)]="events" formControlName="events">
   </mat-form-field>
-  <button mat-raised-button (click)="addNewEvent()">Save</button>
+  <button mat-raised-button [disabled]="!newEventForm.valid" (click)="addNewEvent()">Save</button>
 </form>
+
+</div>

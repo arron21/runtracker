@@ -8,7 +8,7 @@
           <h3>Go out there and get running!</h3>
         </div>
         <mat-card *ngFor="let meet of meets">
-          <app-meet [meetObj]="meet"></app-meet>
+          <app-meet [meetObj]="meet" (deleteMeet)="deleteMeetFromAthlete($event)"></app-meet>
         </mat-card>
       </mat-tab>
       <mat-tab label="Events">

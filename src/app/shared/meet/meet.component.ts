@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {AngularFirestore} from 'angularfire2/firestore';
 
 @Component({
@@ -9,6 +9,7 @@ import {AngularFirestore} from 'angularfire2/firestore';
 export class MeetComponent implements OnInit {
 
   @Input() meetObj: any;
+  @Output() deleteMeet = new EventEmitter<any>();
   public meet: any;
   constructor(
       private db: AngularFirestore
@@ -27,6 +28,12 @@ export class MeetComponent implements OnInit {
               console.log(this.meet);
 
           });
+  }
+
+  onDeleteMeet(meet) {
+
+      console.log(meet);
+      this.deleteMeet.emit({meet: this.meet});
   }
 
 }

@@ -9,6 +9,7 @@ import {EventlistComponent} from './events/eventlist/eventlist.component';
 import {TeamListComponent} from './team/team-list/team-list.component';
 import {AthleteViewComponent} from './team/athlete-view/athlete-view.component';
 import {AthleteEditComponent} from './team/athlete-edit/athlete-edit.component';
+import {EventaddComponent} from './events/eventadd/eventadd.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,10 @@ const routes: Routes = [
         {
             path: 'view/:eventId',
             component: EventeditComponent,
+        },
+        {
+            path: 'event-add',
+            component: EventaddComponent,
         }
         ]
     },
